@@ -1,13 +1,16 @@
 package com.example.tixtaxtox;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,resetBtn,resultBtn;
+    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,resetBtn,resultBtn,nextBtn;
     String b1,b2,b3,b4,b5,b6,b7,b8,b9;
     int flag = 0 ;
     int counter = 0;
@@ -15,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         init();
 
@@ -32,9 +36,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        nextBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent iNext;
+                iNext = new Intent(getApplicationContext(),MainActivity2.class);
+                iNext.putExtra("bundle","2nd Activity");
+                startActivity(iNext);
+            }
+        });
+
 
     }
-    public void check(View view) throws Exception{
+    public void check(View view){
 
 
         Button currentBtn = (Button) view;
@@ -134,24 +148,31 @@ public class MainActivity extends AppCompatActivity {
         btn9 = findViewById(R.id.btn9);
         resultBtn = findViewById(R.id.result);
         resetBtn = findViewById(R.id.rest);
+        nextBtn  = findViewById(R.id.next);
+
+    }
+    private void reset(){
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn1.setText("");
+                btn2.setText("");
+                btn3.setText("");
+                btn4.setText("");
+                btn5.setText("");
+                btn6.setText("");
+                btn7.setText("");
+                btn8.setText("");
+                btn9.setText("");
+                counter = 0;
+                flag = 0;
+            }
+        },1000);
 
 
     }
-    private void reset()throws Exception{
-        Thread.sleep(1000);
-        btn1.setText("");
-        btn2.setText("");
-        btn3.setText("");
-        btn4.setText("");
-        btn5.setText("");
-        btn6.setText("");
-        btn7.setText("");
-        btn8.setText("");
-        btn9.setText("");
-        counter = 0;
-        flag = 0;
-    }
-    public void reset2()throws Exception{
+    public void reset2(){
         btn1.setText("");
         btn2.setText("");
         btn3.setText("");

@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         counter = 0;
         flag = 0;
     }
-    public void reset2()throws Exception{
+    public void reset2(){
         btn1.setText("");
         btn2.setText("");
         btn3.setText("");
